@@ -53,5 +53,3 @@ populations.map((person) => {
 
 
 console.log("---------");
-
-const filteredPassword = populations.filter(person => person.password && )

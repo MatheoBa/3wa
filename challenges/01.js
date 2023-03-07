@@ -6,7 +6,7 @@ const populations = [
             password: "tyeedsa00",
         },
 
-        { id: 1, name: "Albert", jobs: ["doctor"], password: "tyeidii00" },
+        { id: 1, name: "Albert", jobs: ["doctor"], password: "Axgkj00Kl" }, //tyeidii00
 
         {
             id: 2,
@@ -28,28 +28,50 @@ const populations = [
     ];
 
 
+// nb de doc
 const doctors = populations.filter(person => person.jobs && person.jobs.includes("doctor"));
 console.log("Docs: ", doctors.length);
 
-console.log("---------");
 
+// nom dev fullstack
+console.log("---------");
 const fullstackDevNames = populations.filter(person => person.jobs && person.jobs.includes("dev fullstack")).map(person => person.name);
 console.log("Dev FS: ", fullstackDevNames);
 
-console.log("---------");
 
+// nom des chomeurs
+console.log("---------");
 const unemployedNames = populations.filter(person => !person.jobs).map(person => person.name);
 console.log("Chômeurs: ", unemployedNames);
 
+
+// nb de lettres / chiffres du mdp
 console.log("---------");
+populations.forEach(({name, password}) => {
+    const count = password ? [...password].reduce((acc, letter) => (acc[letter] = acc[letter] ? acc[letter] + 1 : 1, acc), {}) : "Aucun MDP";
+    console.log(`${name}'s password:`, count);
+})
 
-populations.map((person) => {
-    const password = person.password;
-    const count = {};
-    if(password) password.split('').forEach(letter => count[letter] = count[letter] ? count[letter] + 1 : 1);
-    console.log(" ");
-    console.log(`${person.name}'s password :`, count);
-});
-
-
+//mdp lettres unique
 console.log("---------");
+const uniquePasswords = populations.filter(({password}) => password && (new Set(password.match(/[a-zA-Z]/g)).size === password.match(/[a-zA-Z]/g).length));
+console.log("Mots De Passe avec lettres unique:")
+uniquePasswords.forEach(({name, password}) => console.log(name, password));
+
+//mdp avec 00
+console.log("---------");
+const ooPassword = populations.filter(({password}) => password && new Set(password.match("0")).size === 1);
+console.log("Mots De Passe avec 00:")
+ooPassword.forEach(({name, password}) => console.log(name, password));
+
+
+//mdp identiques:
+console.log("---------");
+const duplicatePasswords = populations.reduce((acc, {name, password}) => password ? {...acc, [password]: acc[password] ? [...acc[password], name] : [name]} : acc, {});
+Object.entries(duplicatePasswords).forEach(([password, names]) => names.length > 1 && console.log(password, names.join(", ")));
+
+
+
+
+
+

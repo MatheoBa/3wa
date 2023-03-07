@@ -30,7 +30,7 @@ const populations = [
 
 // nb de doc
 const doctors = populations.filter(person => person.jobs && person.jobs.includes("doctor"));
-console.log("Docs: ", doctors.length);
+console.log("Docteurs: ", doctors.length);
 
 
 // nom dev fullstack

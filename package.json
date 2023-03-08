@@ -1,0 +1,9 @@
+{
+  "name": "3wa",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "node-fetch": "^3.3.0"
+  }
+}
